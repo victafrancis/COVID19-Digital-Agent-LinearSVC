@@ -36,11 +36,11 @@ def home():
         qtn = qtn.toarray()  #transform to array
         prediction = virtual_agent_model.predict(qtn)
         print(responses.class_names[np.argmax(prediction[0])])
-        content['response_title'] = responses.class_names[np.argmax(prediction[0])]
+        content['response_title'] = responses.class_names[prediction[0]]
         content['response_content'] = responses.class_responses[prediction[0]]
 
     return render_template('index.html', content=content)
 
 
 if __name__ == '__main__':
-    app.run(debug=False, threaded=False)
+    app.run(debug=True, threaded=False)
