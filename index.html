@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pavanam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
+
+<body>
+
+
+
+  <div class="container" style="max-width: 100%;">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="frame">
+          <h1>Total Cases<h1 style="color: #083b66;">{{content['infected_count']}}</h1></h1>
+          <h1>Recovered<h1 style="color: #083b66;">{{content['recovered_count']}}</h1></h1> 
+          <h1>Recovery Rate<h1 style="color: #083b66;">{{content['recovery_rate']}}</h1></h1>  
+          <h1>Deaths<h1 style="color: #083b66;">{{content['death_count']}}</h1></h1>
+          <h1>Mortality Rate<h1 style="color: #083b66;">{{content['mortality_rate']}}</h1></h1> 
+        </div>
+     
+
+ 
+      </div>
+      <div class="col">
+        <br>
+        <img src="../static/asset/90289946_1840616839408864_162789972166836224_n.png" style="max-width: 70%; max-height: 100%;">
+        <!-- <h1 class="banner"><b>Covid Agent</b></h1> -->
+        <div id="cover">
+          <form method="POST">
+            <div class="tb">
+              <div class="td"><input type="text" placeholder="Ask a question" name="question" required></div>
+              <div class="td" id="s-cover">
+                <button class="button1" type="submit">
+                  <div id="s-circle"></div>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+  {% if content['question'] != '' %}
+  <div class="content">
+    <p><b>Question: </b>{{ content['question'] }}</p>
+    <p><b>Title: </b>{{ content['response_title'] }}</p>
+    <p><b>Model Confidence: </b>{{ content['confidence'] }}</p>
+    {% for item in content['response_content']%}
+    <p> {{ item|safe }} </p>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <footer>
+    <p style="margin-bottom: 0em;"><b>Teambits &COPY; 2020</b></p>
+    <p style="font-size:smaller; margin-top: 0em;"><b>Corona Virus Digital Agent</b></p>
+  </footer>
+
+
+
+
+
+
+</body>
+
+</html>
