@@ -39,6 +39,13 @@
         <!-- <h1 class="banner"><b>Covid Agent</b></h1> -->
         <div id="cover">
           <form method="POST">
+            <!-- <div class="input-group mb-3">
+              <input type="text" class="form-control" name="question" placeholder="Ask a question!" required>
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit">Ask!</button>
+              </div>
+            </div> -->
+            
             <div class="tb">
               <div class="td"><input type="text" placeholder="Ask a question" name="question" required></div>
               <div class="td" id="s-cover">
@@ -57,6 +64,11 @@
     {% for item in content['response_content']%}
     <p> {{ item|safe }} </p>
     {% endfor %}
+  </div>
+  {% else %}
+  <div class="content">
+    <p>Please ask a valid COVID19 question! <i>(eg. What is covid?; Is the virus airborne?)</i></p>
+    <p>For more information on the questions trained for the project, please visit the <a target="_blank" href="https://github.com/victafrancis/Coronavirus-Virtual-Agent-ML">Github Repo</a>!</p>
   </div>
   {% endif %}
 </div>

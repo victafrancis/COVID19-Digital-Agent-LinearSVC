@@ -41,6 +41,23 @@ def home():
 
     return render_template('index.html', content=content)
 
+# API endpoint
+@app.route('/api', methods=['GET'])
+def api():
+    question = request.args['q']
+    question = functions.check(question)
+    qtn = vectorizer.transform([question])  #transform to a vector
+    qtn = qtn.toarray()  #transform to array
+    prediction = virtual_agent_model.predict(qtn)
+
+    data = {
+        'question': question,
+        'response_title': responses.class_names[prediction[0]],
+        'response_content': responses.class_responses[prediction[0]]
+    }
+
+    return data
+
 
 if __name__ == '__main__':
     app.run(debug=True, threaded=False)
