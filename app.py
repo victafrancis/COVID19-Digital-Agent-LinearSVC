@@ -23,6 +23,7 @@ def home():
     content['death_count'] = data['deaths']
     content['death_rate'] = data['death_rate']
     content['recovery_rate'] = data['recovery_rate']
+    content['datetime'] = data['datetime']
 
 
     if request.method == 'POST':

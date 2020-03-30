@@ -2,6 +2,8 @@ from spellchecker import SpellChecker
 from bs4 import BeautifulSoup
 import requests
 import time
+from dateutil import parser
+from datetime import datetime, timezone
 
 # spell checker
 spellcheck = SpellChecker()
@@ -32,7 +34,6 @@ def removeSpecialCharacters(sentence):
 def getInfoAllCountries(data):
     for country in data:
         if(getCountry(country)=='All'):
-            print(country)
             return country
 
 def getCountry(obj):
@@ -48,9 +49,9 @@ def getData():
 
     response = requests.request("GET", url, headers=headers)
     # only get the data from the response
-    data = response.json()['response']
+    allData = response.json()['response']
 
-    data = getInfoAllCountries(data)
+    data = getInfoAllCountries(allData)
 
     output ={}
 
@@ -61,26 +62,15 @@ def getData():
     output['death_rate'] = str(round((output['deaths']/output['infected'])*100,2)) + '%'
     output['recovery_rate'] = str(round((output['recovered']/output['infected'])*100,2)) + '%'
 
+    output['datetime'] = getDatetime(data)
+
     return output
 
+def getDatetime(data):
+    date = data['time']
+    datetime_object = parser.parse(date)
+    datetime_object = utc_to_local(datetime_object)
+    return datetime_object.strftime("%d %b %Y, %H:%M:%S")
 
-# def getData():
-#     url = 'https://www.worldometers.info/coronavirus/'
-    
-#     html_page = urlopen(url).read()
-#     soup = BeautifulSoup(html_page, 'html.parser')
-
-#     data = {}
-
-#     data['infected'] = soup.find("div", {"class": "maincounter-number"}).find("span", text=True).text
-#     data['recovered'] = soup.find_all("div", {"class": "maincounter-number"})[2].find("span", text=True).text
-#     data['deaths'] = soup.find_all("div", {"class": "maincounter-number"})[1].find("span", text=True).text
-
-#     deaths = int(removeSpecialCharacters(data['deaths']))
-#     recovery = int(removeSpecialCharacters(data['recovered']))
-#     infected = int(removeSpecialCharacters(data['infected']))
-
-#     data['death_rate'] = str(round((deaths/infected)*100,2)) + '%'
-#     data['recovery_rate'] = str(round((recovery/infected)*100,2)) + '%'
-
-#     return data
+def utc_to_local(utc_dt):
+    return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
