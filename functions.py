@@ -1,5 +1,4 @@
 from spellchecker import SpellChecker
-from bs4 import BeautifulSoup
 import requests
 import time
 from dateutil import parser
