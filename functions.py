@@ -3,7 +3,6 @@ import requests
 import time
 from dateutil import parser
 from datetime import datetime, timezone
-from dateutil.tz import *
 
 # spell checker
 spellcheck = SpellChecker()
@@ -73,5 +72,4 @@ def getDatetime(data):
     return datetime_object.strftime("%d %b %Y, %H:%M:%S")
 
 def utc_to_local(utc_dt):
-    local = tzlocal()
-    return utc_dt.replace(tzinfo=timezone.utc).astimezone(local)
+    return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
