@@ -54,12 +54,12 @@ def getData():
 
     output ={}
 
-    output['infected'] = data['cases']['total']
-    output['recovered'] = data['cases']['recovered']
-    output['deaths'] = data['deaths']['total']
+    output['infected'] = "{:,}".format(data['cases']['total'])
+    output['recovered'] = "{:,}".format(data['cases']['recovered'])
+    output['deaths'] = "{:,}".format(data['deaths']['total'])
 
-    output['death_rate'] = str(round((output['deaths']/output['infected'])*100,2)) + '%'
-    output['recovery_rate'] = str(round((output['recovered']/output['infected'])*100,2)) + '%'
+    output['death_rate'] = str(round((data['deaths']['total']/data['cases']['total'])*100,2)) + '%'
+    output['recovery_rate'] = str(round((data['cases']['recovered']/data['cases']['total'])*100,2)) + '%'
 
     output['datetime'] = getDatetime(data)
 
