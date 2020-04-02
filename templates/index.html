@@ -64,7 +64,7 @@
   {% if content['question'] != '' %}
   <div class="content">
     <p><b>Question: </b>{{ content['question'] }}</p>
-    <p><b>Title: </b>{{ content['response_title'] }}</p>
+    <p><b>Category: </b>{{ content['response_title'] }}</p>
     {% for item in content['response_content']%}
     <p> {{ item|safe }} </p>
     {% endfor %}
@@ -84,7 +84,12 @@
 
   <footer>
     <p style="margin-bottom: 0em;"><b>Teambits &COPY; 2020</b></p>
-    <p style="font-size:smaller; margin-top: 0em;"><b>Corona Virus Digital Agent</b></p>
+    <p style="font-size:smaller; margin-top: 0em;">
+      <b><a href="https://victafrancis.github.io/portfolio/" target="_blank">Victa</a>, 
+        <a href="https://lilianyangc.github.io/portfolio/" target="_blank">Yang</a>, 
+        <a href="https://naguitsirangel.github.io/Portfolio/index.html" target="_blank">Naguit</a>, 
+        <a href="https://jacildoaldrin.github.io/portfolio/" target="_blank">Jacildo</a></b>
+    </p>
   </footer>
 
 
